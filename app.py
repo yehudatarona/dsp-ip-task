@@ -51,11 +51,13 @@ def get_all_missions():
     chs = []
     for mission in missions:
         mission_data = {'id':mission.id,'name': mission.name, 'duration': mission.duration}
+        chs=[]
         for ch in channels:
             if ch.mis_id == mission.id:
                 ch_data = {'id':ch.id,'ip': ch.ip, 'port':ch.port, 'type': ch.type, 'mis_id':ch.mis_id}
-                chs.append(ch_data)
-                mission_data['channels'] = chs
+                chs.append(ch_data)    
+        mission_data['channels'] = chs
+        print(f'mission_data: {mission_data}') 
         output.append(mission_data)
     return {"missions": output}
 
